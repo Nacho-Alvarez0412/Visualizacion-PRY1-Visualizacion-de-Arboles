@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 pandas = "*"
 plotly = "*"
+dash = "*"
 
 [requires]
 python_version = "3.9"
