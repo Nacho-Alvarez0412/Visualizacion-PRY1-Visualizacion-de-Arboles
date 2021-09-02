@@ -59,7 +59,3 @@ def add_section_values(values_list, section_values):
     values_list.extend(new_values)
 
     return total_section_trades
-
-# data = pd.read_csv("_data/test.csv")
-# resultx = create_hierarchical_structure(data)
-# print(pd.DataFrame(data=resultx))
