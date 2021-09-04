@@ -1,6 +1,6 @@
 import plotly.graph_objects as go
 import plotly.express as px
-from data.transformation import create_hierarchical_structure
+from data_transformations import create_hierarchical_structure
 
 
 def create_icicle_plot(exports_data, orientation="h"):
