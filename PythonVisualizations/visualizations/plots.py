@@ -1,5 +1,5 @@
-from data_transformation import create_hierarchical_structure
 import plotly.graph_objects as go
+from data.transformation import create_hierarchical_structure
 
 
 def create_icicle_plot(exports_data, orientation="h"):

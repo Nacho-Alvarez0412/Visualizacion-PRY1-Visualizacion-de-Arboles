@@ -31,9 +31,22 @@ header.main-header {
     text-align: center;
 }
 
+.filter-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
 footer.main-footer {
     background-color: var(--dark-color);
     color: var(--light-color);
     padding: 3rem 0;
     text-align: center;
+}
+
+
+@media screen and (max-width: 768px) {
+    .filter-options {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+    }
 }

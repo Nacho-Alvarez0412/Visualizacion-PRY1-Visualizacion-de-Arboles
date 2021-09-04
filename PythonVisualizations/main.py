@@ -9,9 +9,15 @@ external_stylesheets = ['./assets/css/style.css']
 app = dash.Dash(title="Costa Rica Exports", external_stylesheets=external_stylesheets)
 
 country_exports_data = pd.read_csv('_data/exports.csv')
+
 # Create polots
 left_right_icicle_plot = create_icicle_plot(country_exports_data)
 top_down_icicle_plot = create_icicle_plot(country_exports_data, orientation="v")
+
+# TODO: Create dropdown menu for section
+product_sections = list(country_exports_data["Section"].unique())
+# TODO: Create dropdown menu for the section groups
+
 
 app.layout = html.Div([
   # Header
@@ -21,9 +27,27 @@ app.layout = html.Div([
   ]),
   # Body
   html.Div(className="container", children=[
+    # Left right icicle plot
     html.H2(children="Icicle plot de izquierda a derecha"),
+    # Interactions
+    html.Div(className="filter-options", children=[
+        html.Label(["Selected section",
+            dcc.Dropdown(id="section-dropdown",
+                     options=[{"label": i, "value": i} for i in product_sections],
+            ),
+        ]),
+        html.Label(["Selected hs2",
+            dcc.Dropdown(id="hs2-dropdown",
+                         options=[],
+            ),
+        ]),
+    ]),
+
+    # Plot
     dcc.Graph(figure=left_right_icicle_plot),
+    # Top down icicle plot
     html.H2(children="Icicle plot de arriba hacia abajo"),
+    # Plot
     dcc.Graph(figure=top_down_icicle_plot),
   ]),
   # Footer
