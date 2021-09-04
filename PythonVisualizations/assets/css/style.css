@@ -29,6 +29,7 @@ header.main-header {
     color: var(--light-color);
     padding: 2rem 0;
     text-align: center;
+    margin-bottom: 2rem;
 }
 
 .filter-options {
