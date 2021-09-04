@@ -1,4 +1,5 @@
 import plotly.graph_objects as go
+import plotly.express as px
 from data.transformation import create_hierarchical_structure
 
 
@@ -20,4 +21,17 @@ def create_icicle_plot(exports_data, orientation="h"):
         tiling={"orientation": orientation}
     ))
     fig.update_layout(margin=dict(t=50, l=25, r=25, b=25))
+    return fig
+
+
+def create_sunburst_chart(exports_data):
+    """Creates a sunburst chart
+
+    :param exports_data: A DataFrame that contains the data of the exportations
+    :return: Sunburst chart with exportations data
+    """
+    fig = px.sunburst(exports_data,
+                path=["Section", "HS2", "HS4"],
+                values="Trade Value"
+    )
     return fig
