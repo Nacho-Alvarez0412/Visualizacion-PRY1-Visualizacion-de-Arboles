@@ -46,7 +46,6 @@ def create_section_hierarchical_structure(exportations_dataframe):
     :return: A dictionary with the hierarchical structure
     """
     result = {"parents": [""], "elements": [exportations_dataframe.iloc[0]["Section"]], "values": []}
-    print(result)
     hs2_trade_values = []
 
     for index, product in exportations_dataframe.iterrows():

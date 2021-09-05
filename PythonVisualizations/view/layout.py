@@ -44,7 +44,7 @@ def create_main_layout(exportations_data):
                 ]),
             ]),
             # Plot
-            dcc.Graph(figure=left_right_icicle_plot),
+            dcc.Graph(id="left-right-icicle", figure=left_right_icicle_plot),
             # Top down icicle plot
             html.H2(children="Icicle plot de arriba hacia abajo"),
             # Plot
