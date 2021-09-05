@@ -1,6 +1,3 @@
-import pandas as pd
-
-
 def create_hierarchical_structure(exports_dataframe, root_name="Exportaciones de Costa Rica"):
     """Creates a hierarchical data structure that can be used for generating icicle plots
 
