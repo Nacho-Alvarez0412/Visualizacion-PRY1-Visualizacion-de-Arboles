@@ -1,6 +1,5 @@
 import plotly.graph_objects as go
-import plotly.express as px
-from data_transformations import create_hierarchical_structure
+from data_transformations import create_hierarchical_structure, create_section_hierarchical_structure
 
 
 def create_icicle_plot(exports_data, orientation="h"):
@@ -11,7 +10,6 @@ def create_icicle_plot(exports_data, orientation="h"):
     :return: The icicle plot figure object
     """
     icicle_data_structure = create_hierarchical_structure(exports_data)
-    # Create plot
     fig = go.Figure(go.Icicle(
         labels=icicle_data_structure["elements"],
         parents=icicle_data_structure["parents"],
@@ -24,14 +22,15 @@ def create_icicle_plot(exports_data, orientation="h"):
     return fig
 
 
-def create_sunburst_chart(exports_data):
-    """Creates a sunburst chart
-
-    :param exports_data: A DataFrame that contains the data of the exportations
-    :return: Sunburst chart with exportations data
-    """
-    fig = px.sunburst(exports_data,
-                path=["Section", "HS2", "HS4"],
-                values="Trade Value"
-    )
+def create_icicle_from_section(exports_data, orientation="h"):
+    icicle_data_structure = create_section_hierarchical_structure(exports_data)
+    fig = go.Figure(go.Icicle(
+        labels=icicle_data_structure["elements"],
+        parents=icicle_data_structure["parents"],
+        values=icicle_data_structure["values"],
+        branchvalues="total",
+        root_color="lightgrey",
+        tiling={"orientation": orientation}
+    ))
+    fig.update_layout(margin=dict(t=50, l=25, r=25, b=25))
     return fig

@@ -39,6 +39,30 @@ def create_hierarchical_structure(exports_dataframe, root_name="Exportaciones de
     return result
 
 
+def create_section_hierarchical_structure(exportations_dataframe):
+    """Creates a hierarchical structure using a section as the root of structure
+
+    :param exportations_dataframe: The DataFrame that will be transformed
+    :return: A dictionary with the hierarchical structure
+    """
+    result = {"parents": [""], "elements": [exportations_dataframe.iloc[0]["Section"]], "values": []}
+    print(result)
+    hs2_trade_values = []
+
+    for index, product in exportations_dataframe.iterrows():
+        # Check if HS2 of section has been inserted
+        if not product["HS2"] in result["elements"]:
+            result["parents"].append(product["Section"])
+            result["elements"].append(product["HS2"])
+            hs2_trade_values.append([])
+        result["elements"].append(product["HS4"])
+        result["parents"].append(product["HS2"])
+        hs2_trade_values[len(hs2_trade_values) - 1].append(product["Trade Value"])
+
+    add_section_values(result["values"], hs2_trade_values)
+    return result
+
+
 def add_section_values(values_list, section_values):
     """Calculates the trade value of the section and each of its hs2 groups
 

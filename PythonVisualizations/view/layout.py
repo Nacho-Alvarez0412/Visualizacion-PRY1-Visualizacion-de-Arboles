@@ -1,6 +1,7 @@
 import dash_core_components as dcc
 import dash_html_components as html
-from visualizations import create_icicle_plot, create_sunburst_chart
+from visualizations.icicle_plots import create_icicle_plot
+from visualizations.sunburst_charts import create_sunburst_chart
 
 
 def create_main_layout(exportations_data):
@@ -9,7 +10,6 @@ def create_main_layout(exportations_data):
     :param exportations_data: The DataFrame used to display in the visualizations
     :return: The website main layout
     """
-
     # Create data visualizations
     sunburst_chart = create_sunburst_chart(exportations_data)
     left_right_icicle_plot = create_icicle_plot(exportations_data)
