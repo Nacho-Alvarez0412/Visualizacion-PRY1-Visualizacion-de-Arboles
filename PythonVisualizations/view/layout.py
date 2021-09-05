@@ -1,7 +1,6 @@
 import dash_core_components as dcc
 import dash_html_components as html
-from visualizations.icicle_plots import create_icicle_plot
-from visualizations.sunburst_charts import create_sunburst_chart
+from visualizations.charts import create_sunburst_chart, create_icicle_chart
 
 
 def create_main_layout(exportations_data):
@@ -12,8 +11,8 @@ def create_main_layout(exportations_data):
     """
     # Create data visualizations
     sunburst_chart = create_sunburst_chart(exportations_data)
-    left_right_icicle_plot = create_icicle_plot(exportations_data)
-    top_down_icicle_plot = create_icicle_plot(exportations_data, orientation="v")
+    left_right_icicle_plot = create_icicle_chart(exportations_data)
+    top_down_icicle_plot = create_icicle_chart(exportations_data, orientation="v")
 
     product_sections = list(exportations_data["Section"].unique())
 

@@ -19,7 +19,7 @@ body, html {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 80%;
     padding: 0rem 2rem;
     margin: auto;
 }
