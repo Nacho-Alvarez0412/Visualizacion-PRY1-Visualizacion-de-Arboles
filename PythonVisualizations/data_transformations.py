@@ -1,3 +1,6 @@
+import pandas as pd
+
+
 def create_hierarchical_structure(exports_dataframe, root_name="Exportaciones de Costa Rica"):
     """Creates a hierarchical data structure that can be used for generating icicle plots
 
@@ -59,6 +62,25 @@ def create_section_hierarchical_structure(exportations_dataframe):
         hs2_trade_values[len(hs2_trade_values) - 1].append(product["Trade Value"])
 
     add_section_values(result["values"], hs2_trade_values)
+    return result
+
+
+def create_hs2_hierarchical_structure(exportations_dataframe):
+    """Creates structure using hs2 as parent
+
+    :param exportations_dataframe: The products hat use the hs2
+    :return: The hierarchical structure with HS2 as parent
+    """
+    result = {"parents": [""], "elements": [exportations_dataframe.iloc[0]["HS2"]], "values": []}
+    total_hs2_trades = 0
+
+    for index, product in exportations_dataframe.iterrows():
+        result["parents"].append(product["HS2"])
+        result["elements"].append(product["HS4"])
+        result["values"].append(product["Trade Value"])
+        total_hs2_trades += product["Trade Value"]
+
+    result["values"].insert(0, total_hs2_trades)
     return result
 
 
