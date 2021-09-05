@@ -26,18 +26,30 @@ def create_main_layout(exportations_data):
         html.Div(className="container", children=[
             # Sunburst chart
             html.H2(children="Sunburst chart"),
-            dcc.Graph(figure=sunburst_chart),
+            html.Div(className="filter-options", children=[
+                html.Label(["Selected section",
+                            dcc.Dropdown(id="sunburst-section-dropdown",
+                                         options=[{"label": i, "value": i} for i in product_sections],
+                                         ),
+                            ]),
+                html.Label(["Selected hs2",
+                            dcc.Dropdown(id="sunburst-hs2-dropdown",
+                                         options=[],
+                                         ),
+                            ]),
+            ]),
+            dcc.Graph(figure=sunburst_chart, id="sunburst-chart"),
             # Left right icicle plot
             html.H2(children="Icicle plot de izquierda a derecha"),
             # Interactions
             html.Div(className="filter-options", children=[
                 html.Label(["Selected section",
-                            dcc.Dropdown(id="section-dropdown",
+                            dcc.Dropdown(id="horizontal-icicle-section-dropdown",
                                          options=[{"label": i, "value": i} for i in product_sections],
                             ),
                 ]),
                 html.Label(["Selected hs2",
-                            dcc.Dropdown(id="hs2-dropdown",
+                            dcc.Dropdown(id="horizontal-icicle-hs2-dropdown",
                                          options=[],
                             ),
                 ]),
@@ -46,8 +58,20 @@ def create_main_layout(exportations_data):
             dcc.Graph(id="left-right-icicle", figure=left_right_icicle_plot),
             # Top down icicle plot
             html.H2(children="Icicle plot de arriba hacia abajo"),
+            html.Div(className="filter-options", children=[
+                html.Label(["Selected section",
+                            dcc.Dropdown(id="vertical-icicle-section-dropdown",
+                                         options=[{"label": i, "value": i} for i in product_sections],
+                                         ),
+                            ]),
+                html.Label(["Selected hs2",
+                            dcc.Dropdown(id="vertical-icicle-hs2-dropdown",
+                                         options=[],
+                                         ),
+                            ]),
+            ]),
             # Plot
-            dcc.Graph(figure=top_down_icicle_plot),
+            dcc.Graph(id="vertical-icicle", figure=top_down_icicle_plot),
         ]),
         # Footer
         html.Footer(className="main-footer", children="Desarrollado por Ignacio Álvarez y Andrés Aguilar")
