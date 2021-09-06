@@ -27,9 +27,14 @@ body, html {
 header.main-header {
     background-color: var(--primary-color);
     color: var(--light-color);
-    padding: 2rem 0;
-    text-align: center;
+    padding: 1rem 0;
     margin-bottom: 2rem;
+}
+
+header.main-header > .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .filter-options {
@@ -44,8 +49,20 @@ footer.main-footer {
     text-align: center;
 }
 
-
 @media screen and (max-width: 768px) {
+    header.main-header h1 {
+        text-align: center;
+        font-size: 1.5rem;
+    }
+
+    header.main-header p {
+        display: none;
+    }
+
+    header.main-header > .container {
+        display: block;
+    }
+
     .filter-options {
         grid-template-columns: 1fr;
         grid-template-rows: 1fr;

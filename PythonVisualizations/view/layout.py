@@ -19,8 +19,10 @@ def create_main_layout(exportations_data):
     main_layout = html.Div([
         # Header
         html.Header(className="main-header", children=[
-            html.H1(children="Exportaciones de Costa Rica"),
-            html.P(children="Curso: Visualización de Información")
+            html.Div(className="container", children=[
+                html.H1(children="Exportaciones de Costa Rica"),
+                html.P(children="Visualización de Información")
+            ])
         ]),
         # Body
         html.Div(className="container", children=[
