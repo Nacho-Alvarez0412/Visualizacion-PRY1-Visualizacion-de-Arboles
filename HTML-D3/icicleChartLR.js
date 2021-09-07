@@ -14,6 +14,23 @@ function icicleChartLR (Chartdata) {
         .style("font", "10px sans-serif");
         let root = partition(Chartdata);
 
+    const sectionItems = 
+        d3.select('#SectionSelect')
+        .on('change',onchangeSection)
+
+    sectionItems
+        .selectAll('#SectionOption')
+            .data(mainRoot.children)
+            .enter()
+            .append("option")
+            .text((data) => data.data.name)
+            .attr("value", (data) => data.data["Section ID"])
+            .attr("class","SectionOption");
+
+    const hs2Items = d3.select('#HS2Select');
+
+    
+
     function chart(){
         const cell = svg.selectAll("g")
 
@@ -50,6 +67,18 @@ function icicleChartLR (Chartdata) {
             .text(d =>"Product: "+ `${d.ancestors().map(d => d.data.name).reverse().join(" -> ")}\n Trade Value: ₡${format(d.value)}`)
 
 
+        hs2Items.
+            on('change',onchangeHS2)
+
+        
+        function rectHeight(d) {
+            return d.x1 - d.x0 - Math.min(1, (d.x1 - d.x0) / 2);
+        }
+        
+        function labelVisible(d) {
+            return d.y1 <= CHART_WIDTH && d.y0 >= 0 && d.x1 - d.x0 > 16;
+        }
+
         function clicked(event, p) {
             focus = focus === p ? p = p.parent : p;
         
@@ -68,45 +97,26 @@ function icicleChartLR (Chartdata) {
             text.transition(t).attr("fill-opacity", d => +labelVisible(d.target));
             tspan.transition(t).attr("fill-opacity", d => labelVisible(d.target) * 0.7);
         }
+
+        function onchangeHS2() {
         
-        function rectHeight(d) {
-            return d.x1 - d.x0 - Math.min(1, (d.x1 - d.x0) / 2);
-        }
-        
-        function labelVisible(d) {
-            return d.y1 <= CHART_WIDTH && d.y0 >= 0 && d.x1 - d.x0 > 16;
-        }
-
-        const sectionItems = 
-        d3.select('#SectionSelect')
-        .on('change',onchangeSection)
-
-    sectionItems
-        .selectAll('#SectionOption')
-            .data(mainRoot.children)
-            .enter()
-            .append("option")
-            .text((data) => data.data.name)
-            .attr("value", (data) => data.data["Section ID"])
-            .attr("class","SectionOption");
-
+            let selectValue1 = d3.select('#HS2Select').property('value');
+            let selectedHS2;
     
-    function setHS2(data){
-        const hs2Items = d3.select('#HS2Select')
-            .on('change',onchangeHS2)
-
-        hs2Items
-            .selectAll('#HS2Option')
-                .data(data)
-                .enter()
-                .append("option")
-                .text((data) => data.data.name)
-                .attr("value", (data) => data.data["HS2 ID"])
-                .attr("class","HS2Option");
+            root.children.forEach(element => {
+    
+                if(element.data["HS2 ID"] == selectValue1 ){
+                    selectedHS2 = element;
+                }
+            })
+            clicked(null,selectedHS2);
+        };
+        
+    
+        return svg.node();
     }
-    
-        
 
+    
     function onchangeSection() {
         let selectValue = d3.select('#SectionSelect').property('value')
         let selectedSection;
@@ -124,43 +134,21 @@ function icicleChartLR (Chartdata) {
         d3.selectAll("svg > *").remove();
         root = partition(selectedSection);
         chart();
-        //clicked(null,selectedSection);
         setHS2(HS2Options);
         
     };
 
-    function onchangeHS2() {
-        
-        let selectValue1 = d3.select('#HS2Select').property('value');
-        let selectValue2 = d3.select('#SectionSelect').property('value');
-        let selectedSection;
-        let selectedHS2;
-
-        mainRoot.children.forEach(element => {
-            
-            if(element.data["Section ID"] == selectValue2){
-                selectedSection = element;
-            }
-                
-        });
-
-        selectedSection.children.forEach(element => {
-
-            if(element.data["HS2 ID"] == selectValue1 ){
-                selectedHS2 = element;
-            }
-        })
-        clicked(null,selectedHS2);
-    };
-        
-    
-        return svg.node();
+    function setHS2(data){
+        console.log(data);
+        hs2Items
+            .selectAll('#HS2Option')
+                .data(data)
+                .enter()
+                .append("option")
+                .text((data) => data.name)
+                .attr("value", (data) => data["HS2 ID"])
+                .attr("class","HS2Option");
     }
-
-    
-
-
-    
 
     
     chart();
