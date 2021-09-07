@@ -99,7 +99,6 @@ function icicleChartLR (Chartdata) {
         }
 
         function onchangeHS2() {
-        
             let selectValue1 = d3.select('#HS2Select').property('value');
             let selectedHS2;
     
@@ -139,7 +138,7 @@ function icicleChartLR (Chartdata) {
     };
 
     function setHS2(data){
-        console.log(data);
+        d3.selectAll("#HS2Select > *").remove();
         hs2Items
             .selectAll('#HS2Option')
                 .data(data)
