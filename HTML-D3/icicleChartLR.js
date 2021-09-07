@@ -48,7 +48,7 @@ function icicleChartLR () {
 
     const sectionItems = 
         d3.select('#SectionSelect')
-        .on('change',onchange)
+        .on('change',onchangeSection)
 
     sectionItems
         .selectAll('#SectionOption')
@@ -59,8 +59,25 @@ function icicleChartLR () {
             .attr("value", (data) => data.data["Section ID"])
             .attr("class","SectionOption");
 
-    function onchange() {
-        let selectValue = d3.select('select').property('value')
+    
+    function setHS2(data){
+        const hs2Items = d3.select('#HS2Select')
+            .on('change',onchangeHS2)
+
+        hs2Items
+            .selectAll('#HS2Option')
+                .data(data)
+                .enter()
+                .append("option")
+                .text((data) => data.data.name)
+                .attr("value", (data) => data.data["HS2 ID"])
+                .attr("class","HS2Option");
+    }
+    
+        
+
+    function onchangeSection() {
+        let selectValue = d3.select('#SectionSelect').property('value')
         let selectedSection;
         let HS2Options;
 
@@ -72,8 +89,32 @@ function icicleChartLR () {
             }
                 
         });
-        console.log(HS2Options)
         clicked(null,selectedSection);
+        setHS2(HS2Options);
+    };
+
+    function onchangeHS2() {
+        
+        let selectValue1 = d3.select('#HS2Select').property('value');
+        let selectValue2 = d3.select('#SectionSelect').property('value');
+        let selectedSection;
+        let selectedHS2;
+
+        root.children.forEach(element => {
+            
+            if(element.data["Section ID"] == selectValue2){
+                selectedSection = element;
+            }
+                
+        });
+
+        selectedSection.children.forEach(element => {
+
+            if(element.data["HS2 ID"] == selectValue1 ){
+                selectedHS2 = element;
+            }
+        })
+        clicked(null,selectedHS2);
     };
 
     function clicked(event, p) {
