@@ -6,7 +6,6 @@ function icicleChartLR () {
     const format = d3.format(",d");
     const color = d3.scaleOrdinal(d3.quantize(d3.interpolateRainbow, CHART_DATA.children.length + 1));
     const root = partition(CHART_DATA);
-    console.log(root.descendants());
     
     const svg = d3.select("#IcicleLR")
         .append("svg")
@@ -45,6 +44,37 @@ function icicleChartLR () {
     
     cell.append("title")
         .text(d =>"Product: "+ `${d.ancestors().map(d => d.data.name).reverse().join(" -> ")}\n Trade Value: ₡${format(d.value)}`)
+
+
+    const sectionItems = 
+        d3.select('#SectionSelect')
+        .on('change',onchange)
+
+    sectionItems
+        .selectAll('#SectionOption')
+            .data(root.children)
+            .enter()
+            .append("option")
+            .text((data) => data.data.name)
+            .attr("value", (data) => data.data["Section ID"])
+            .attr("class","SectionOption");
+
+    function onchange() {
+        let selectValue = d3.select('select').property('value')
+        let selectedSection;
+        let HS2Options;
+
+        root.children.forEach(element => {
+            
+            if(element.data["Section ID"] == selectValue){
+                selectedSection = element;
+                HS2Options = element.children;
+            }
+                
+        });
+        console.log(HS2Options)
+        clicked(null,selectedSection);
+    };
 
     function clicked(event, p) {
         focus = focus === p ? p = p.parent : p;
