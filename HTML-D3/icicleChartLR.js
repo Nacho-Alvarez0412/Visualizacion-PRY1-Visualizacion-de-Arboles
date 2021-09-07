@@ -6,6 +6,7 @@ function icicleChartLR () {
     const format = d3.format(",d");
     const color = d3.scaleOrdinal(d3.quantize(d3.interpolateRainbow, CHART_DATA.children.length + 1));
     const root = partition(CHART_DATA);
+    console.log(root.descendants());
     
     const svg = d3.select("#IcicleLR")
         .append("svg")
@@ -41,7 +42,6 @@ function icicleChartLR () {
 
     const tspan = text.append("tspan")
         .attr("fill-opacity", d => labelVisible(d) * 0.7)
-        .text(d => "  ₡"+`${format(d.value)}`);
     
     cell.append("title")
         .text(d =>"Product: "+ `${d.ancestors().map(d => d.data.name).reverse().join(" -> ")}\n Trade Value: ₡${format(d.value)}`)
