@@ -1,3 +1,32 @@
+def create_hierarchical_structure_without_root(exports_dataframe):
+    result = {"parents": [], "elements": [], "values": []}
+    hs2_trade_values = []
+
+    for index, product in exports_dataframe.iterrows():
+        if index == 0:
+            result["elements"].append(product['Section'])
+            result["parents"].append("")
+        # Check if section exists
+        if not product["Section"] in result["elements"]:
+            result["elements"].append(product['Section'])
+            result["parents"].append("")
+            add_section_values(result["values"], hs2_trade_values)
+            hs2_trade_values = []
+        # Check if HS2 of section exists
+        if not product["HS2"] in result["elements"]:
+            result["elements"].append(product["HS2"])
+            result["parents"].append(product["Section"])
+            hs2_trade_values.append([])
+        # Add new leaf to the tree
+        result["elements"].append(product["HS4"])
+        result["parents"].append(product["HS2"])
+        hs2_trade_values[len(hs2_trade_values) - 1].append(product["Trade Value"])
+
+    # Add trade values from last section
+    add_section_values(result["values"], hs2_trade_values)
+    return result
+
+
 def create_hierarchical_structure(exports_dataframe, root_name="Exportaciones de Costa Rica"):
     """Creates a hierarchical data structure that can be used for generating icicle plots
 

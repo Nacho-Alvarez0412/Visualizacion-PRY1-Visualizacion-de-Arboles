@@ -1,6 +1,5 @@
 import plotly.graph_objects as go
-import plotly.express as px
-from visualizations.transformations import create_hierarchical_structure, create_section_hierarchical_structure, create_hs2_hierarchical_structure
+from visualizations.transformations import create_hierarchical_structure_without_root, create_hierarchical_structure, create_section_hierarchical_structure, create_hs2_hierarchical_structure
 
 
 def create_sunburst_chart(exports_data):
@@ -9,10 +8,14 @@ def create_sunburst_chart(exports_data):
     :param exports_data: A DataFrame that contains the data of the exportations
     :return: Sunburst chart with exportations data
     """
-    fig = px.sunburst(exports_data,
-            path=["Section", "HS2", "HS4"],
-            values="Trade Value"
-    )
+    sunburst_data_structure = create_hierarchical_structure_without_root(exports_data)
+    fig = go.Figure(go.Sunburst(
+        labels=sunburst_data_structure["elements"],
+        parents=sunburst_data_structure["parents"],
+        values=sunburst_data_structure["values"],
+        branchvalues="total"
+    ))
+    fig.update_layout(margin=dict(t=0, l=0, r=0, b=0))
     return fig
 
 
