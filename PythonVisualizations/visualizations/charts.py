@@ -2,13 +2,19 @@ import plotly.graph_objects as go
 from visualizations.transformations import create_hierarchical_structure_without_root, create_hierarchical_structure, create_section_hierarchical_structure, create_hs2_hierarchical_structure
 
 
-def create_sunburst_chart(exports_data):
+def create_sunburst_chart(exports_data, chart_type="all"):
     """Creates a sunburst chart
 
     :param exports_data: A DataFrame that contains the data of the exportations
     :return: Sunburst chart with exportations data
     """
-    sunburst_data_structure = create_hierarchical_structure_without_root(exports_data)
+    sunburst_data_structure = None
+    if chart_type == "all":
+        sunburst_data_structure = create_hierarchical_structure_without_root(exports_data)
+    elif chart_type == "section":
+        sunburst_data_structure = create_section_hierarchical_structure(exports_data)
+    elif chart_type == "hs2":
+        sunburst_data_structure = create_hs2_hierarchical_structure(exports_data)
     fig = go.Figure(go.Sunburst(
         labels=sunburst_data_structure["elements"],
         parents=sunburst_data_structure["parents"],

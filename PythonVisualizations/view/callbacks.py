@@ -17,7 +17,7 @@ def register_callbacks(app, exportations_data):
             # Get hs2 groups by section name
             hs2_groups = section_products["HS2"].unique()
             hs2_dropdown_options = [{"label": i, "value": i} for i in list(hs2_groups)]
-            section_icicle_plot = create_sunburst_chart(section_products)
+            section_icicle_plot = create_sunburst_chart(section_products, chart_type="section")
             return hs2_dropdown_options, section_icicle_plot
         elif selected_section and selected_hs2:
             hs2_groups = exportations_data[exportations_data["Section"] == selected_section]["HS2"].unique()
@@ -28,10 +28,10 @@ def register_callbacks(app, exportations_data):
             # No products with section and hs2
             if filtered_products.empty:
                 section_products = exportations_data[exportations_data["Section"] == selected_section]
-                section_icicle_plot = create_sunburst_chart(section_products)
+                section_icicle_plot = create_sunburst_chart(section_products, chart_type="section")
                 return hs2_dropdown_options, section_icicle_plot
 
-            hs2_icicle_plot = create_sunburst_chart(filtered_products)
+            hs2_icicle_plot = create_sunburst_chart(filtered_products, chart_type="hs2")
             return hs2_dropdown_options, hs2_icicle_plot
 
 

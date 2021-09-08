@@ -1,4 +1,9 @@
 def create_hierarchical_structure_without_root(exports_dataframe):
+    """Creates a hierarchical data structure with multiple roots
+
+    :param exports_dataframe: The dataframe with the data of exportations
+    :return: A dictionary wiht the hierarchical structure
+    """
     result = {"parents": [], "elements": [], "values": []}
     hs2_trade_values = []
 
