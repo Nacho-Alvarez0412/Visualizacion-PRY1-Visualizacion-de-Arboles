@@ -11,8 +11,10 @@
         <!-- SCRIPTS -->
         <script src="https://d3js.org/d3.v7.min.js" defer></script>
         <script src="etl.js" defer></script>
-        <script src="icicleChartLR.js" defer></script>
         <script src="main.js" defer></script>
+        <script src="icicleChartLR.js" defer></script>
+        <script src="icicleChartTB.js" defer></script>
+        
     </head>
 
     <body>
@@ -39,7 +41,7 @@
 
         
         
-        <section id="Icicle Chart Left-Right" class="IcicleChartLeft-Right">
+        <div id="Icicle Chart Left-Right" class="IcicleChartLeft-Right">
 
             <h1 class="subtitle"> Icicle Chart Left to Right </h1>
             <div id="Chart Select" class="chart-select">
@@ -55,30 +57,38 @@
 
             </div>
 
-        </section>
+        </div>
             
 
+        <div id="Icicle Chart Top-Bottom" class="IcicleChartTop-Bottom">
 
-        <section id="Icicle Chart Top-Bottom">
-            <div id="Chart Select">
-                
+            <h1 class="subtitle"> Icicle Chart Left to Right </h1>
+            
+            <div id="Chart Select" class="chart-select">
+                <select name="SectionSelect" id="SectionSelect" >
+                    <option  value="0"  selected disabled > -- Select an option -- </option>
+                </select>
+
+                <select name="HS2Select" id="HS2Select" >
+                    <option value="0" selected disabled> -- Select an option -- </option>
+                </select>
             </div>
             <div id="IcicleTB">
 
             </div>
-        </section>
+        </div>
         
-        <section id="Sunburst Chart">
+
+
+        <div id="Sunburst Chart">
             <div id="Chart Select">
                 
             </div>
             <div id="Sunburst">
 
             </div>
-        </section>
+        </div>
         
-        <footer>
-            <h2>Elaborado por \n Ignacio Álvarez \n Andrés Aguilar</h2>
-        </footer>
+        
     </body>
 </html>

@@ -1,4 +1,4 @@
-const CHART_WIDTH = 975;
+const CHART_WIDTH = 900;
 const CHART_HEIGHT = 1000;
 
 function icicleChartLR (Chartdata) {
