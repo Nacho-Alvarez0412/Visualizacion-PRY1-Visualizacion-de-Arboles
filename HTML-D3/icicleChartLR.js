@@ -1,4 +1,5 @@
 function icicleChartLR(Chartdata) {
+	console.log(Chartdata);
 	const CHART_WIDTH = 900;
 	const CHART_HEIGHT = 1000;
 	const format = d3.format(",d");
@@ -6,7 +7,6 @@ function icicleChartLR(Chartdata) {
 		d3.quantize(d3.interpolateRainbow, Chartdata.children.length + 1)
 	);
 	let mainRoot = partition(Chartdata);
-
 	const svg = d3
 		.select("#IcicleLR")
 		.append("svg")
@@ -160,6 +160,7 @@ function icicleChartLR(Chartdata) {
 	}
 
 	function partition(data) {
+		console.log(d3.hierarchy(data));
 		const root = d3
 			.hierarchy(data)
 			.sum((d) => d["Trade Value"])

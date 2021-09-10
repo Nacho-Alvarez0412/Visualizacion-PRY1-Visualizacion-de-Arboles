@@ -26,6 +26,7 @@ function formatData(data) {
 			);
 			sections["Section ID"] = element["Section ID"];
 			sections["name"] = element["Section"];
+			sections["children"] = [];
 		}
 
 		if (leaves["HS2 ID"] == 0) {

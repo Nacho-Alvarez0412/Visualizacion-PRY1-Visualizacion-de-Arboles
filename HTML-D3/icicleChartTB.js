@@ -63,20 +63,6 @@ function icicleChartTB(chartData) {
 			})
 			.style("cursor", "pointer")
 			.on("click", clicked);
-		/*
-        const text = cell.append("text")
-            .style("user-select", "none")
-            .attr("pointer-events", "none")
-            .attr("x", d => d.x0 + 10)
-            .attr("y", d => d.y0 + 40)
-            .attr("fill-opacity", d => +labelVisible(d));
-
-        text.append("tspan")
-            .text(d => d.data.name);
-
-        const tspan = text.append("tspan")
-            .attr("fill-opacity", d => labelVisible(d) * 0.7)
-        */
 
 		cell.append("title").text(
 			(d) =>
@@ -110,8 +96,6 @@ function icicleChartTB(chartData) {
 				.attr("height", function (d) {
 					return y(d.y1) - y(d.y0);
 				});
-			//text.transition(t).attr("fill-opacity", d => +labelVisible(d.target));
-			//tspan.transition(t).attr("fill-opacity", d => labelVisible(d.target) * 0.7);
 		}
 
 		function labelVisible(d) {
