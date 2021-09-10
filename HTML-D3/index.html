@@ -1,94 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Proyecto 1 Visualización de Datos con D3</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proyecto 1 Visualización de Datos con D3</title>
 
-        <!-- STYLE -->
-        <link rel="stylesheet" type="text/css" href="style.css" />
+    <!-- STYLE -->
+    <link rel="stylesheet" type="text/css" href="style.css" />
 
-        <!-- SCRIPTS -->
-        <script src="https://d3js.org/d3.v7.min.js" defer></script>
-        <script src="etl.js" defer></script>
-        <script src="main.js" defer></script>
-        <script src="icicleChartLR.js" defer></script>
-        <script src="icicleChartTB.js" defer></script>
-        
-    </head>
+    <!-- SCRIPTS -->
+    <script src="https://d3js.org/d3.v7.min.js" defer></script>
+    <script src="etl.js" defer></script>
+    <script src="icicleChartLR.js" defer></script>
+    <script src="icicleChartTB.js" defer></script>
+    <script src="sunburst.js" defer></script>
+    <script src="main.js" defer></script>
+  </head>
 
-    <body>
+  <body>
+    <header>
+      <div class="title">
+        <h1>Data Visualization</h1>
+        <h2>Exports of Costa Rica</h2>
+      </div>
 
-        
-        <header>
-            <div class="title">
-                <h1> Data Visualization </h1>
-            <h2> Exports of Costa Rica  </h2>
-            </div>
+      <input id="nav-toggle" type="checkbox" class="nav-toggle" unchecked />
+      <nav>
+        <ul>
+          <li><a href="#"> Icicle Left-Right </a></li>
+          <li><a href="#"> Icicle Top-Bottom </a></li>
+          <li><a href="#"> Sunburst </a></li>
+        </ul>
+      </nav>
+      <label for="nav-toggle" class="nav-toggle-label">
+        <span></span>
+      </label>
+    </header>
 
-            <input id="nav-toggle" type="checkbox" class="nav-toggle" unchecked >
-            <nav>
-                <ul>
-                    <li><a href="#"> Icicle Left-Right </a></li>
-                    <li><a href="#"> Icicle Top-Bottom </a></li>
-                    <li><a href="#"> Sunburst </a></li>
-                </ul>
-            </nav>
-            <label for="nav-toggle" class="nav-toggle-label">
-                <span></span>
-            </label>
-        </header>
+    <div id="Icicle Chart Left-Right" class="IcicleChartLeft-Right">
+      <h1 class="subtitle">Icicle Chart Left to Right</h1>
+      <div id="Chart Select" class="chart-select">
+        <select name="SectionSelect" id="SectionSelect">
+          <option value="0" selected disabled>-- Select an option --</option>
+        </select>
 
-        
-        
-        <div id="Icicle Chart Left-Right" class="IcicleChartLeft-Right">
+        <select name="HS2Select" id="HS2Select">
+          <option value="0" selected disabled>-- Select an option --</option>
+        </select>
+      </div>
+      <div id="IcicleLR" class="IcicleLR"></div>
+    </div>
 
-            <h1 class="subtitle"> Icicle Chart Left to Right </h1>
-            <div id="Chart Select" class="chart-select">
-                <select name="SectionSelect" id="SectionSelect" >
-                    <option  value="0"  selected disabled > -- Select an option -- </option>
-                </select>
+    <div id="Icicle Chart Top-Bottom" class="IcicleChartTop-Bottom">
+      <h1 class="subtitle">Icicle Chart Left to Right</h1>
 
-                <select name="HS2Select" id="HS2Select" >
-                    <option value="0" selected disabled> -- Select an option -- </option>
-                </select>
-            </div>
-            <div id="IcicleLR" class="IcicleLR">
+      <div id="Chart Select" class="chart-select">
+        <select name="SectionSelect" id="SectionSelectTB">
+          <option value="0" selected disabled>-- Select an option --</option>
+        </select>
 
-            </div>
+        <select name="HS2Select" id="HS2SelectTB">
+          <option value="0" selected disabled>-- Select an option --</option>
+        </select>
+      </div>
+      <div id="IcicleTB" class="IcicleTB"></div>
+    </div>
 
-        </div>
-            
+    <div id="Sunburst Chart" class="IcicleChartTop-Bottom">
+      <h1 class="subtitle">Sunburst</h1>
 
-        <div id="Icicle Chart Top-Bottom" class="IcicleChartTop-Bottom">
+      <div id="Chart Select" class="chart-select">
+        <select name="SectionSelect" id="SectionSelectSB">
+          <option value="0" selected disabled>-- Select an option --</option>
+        </select>
 
-            <h1 class="subtitle"> Icicle Chart Left to Right </h1>
-            
-            <div id="Chart Select" class="chart-select">
-                <select name="SectionSelect" id="SectionSelect" >
-                    <option  value="0"  selected disabled > -- Select an option -- </option>
-                </select>
+        <select name="HS2Select" id="HS2SelectSB">
+          <option value="0" selected disabled>-- Select an option --</option>
+        </select>
+      </div>
 
-                <select name="HS2Select" id="HS2Select" >
-                    <option value="0" selected disabled> -- Select an option -- </option>
-                </select>
-            </div>
-            <div id="IcicleTB">
-
-            </div>
-        </div>
-        
-
-
-        <div id="Sunburst Chart">
-            <div id="Chart Select">
-                
-            </div>
-            <div id="Sunburst">
-
-            </div>
-        </div>
-        
-        
-    </body>
+      <div id="Sunburst"></div>
+    </div>
+  </body>
 </html>
