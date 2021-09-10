@@ -6,6 +6,7 @@ def create_sunburst_chart(exports_data, chart_type="all"):
     """Creates a sunburst chart
 
     :param exports_data: A DataFrame that contains the data of the exportations
+    :param chart_type: The type of the data used for the chart
     :return: Sunburst chart with exportations data
     """
     sunburst_data_structure = None
@@ -19,9 +20,11 @@ def create_sunburst_chart(exports_data, chart_type="all"):
         labels=sunburst_data_structure["elements"],
         parents=sunburst_data_structure["parents"],
         values=sunburst_data_structure["values"],
+        hovertemplate="%{label}<br />Trade Value: $%{value:,f}<extra></extra>",
         branchvalues="total"
     ))
-    fig.update_layout(margin=dict(t=0, l=0, r=0, b=0))
+    fig.update_layout(margin=dict(t=15, l=0, r=0, b=15), title_text="Exportaciones de Costa Rica en el 2019",
+                      height=500, title_yanchor="middle", title_xanchor="left")
     return fig
 
 
@@ -33,7 +36,6 @@ def create_icicle_chart(exports_data, orientation="h", chart_type="all"):
     :param chart_type: The type of the data used for the chart
     :return: An icicle chart with the exportation data
     """
-    # Determine hierarchical structure
     icicle_data_structure = None
     if chart_type == "all":
         icicle_data_structure = create_hierarchical_structure(exports_data)
@@ -46,8 +48,9 @@ def create_icicle_chart(exports_data, orientation="h", chart_type="all"):
         parents=icicle_data_structure["parents"],
         values=icicle_data_structure["values"],
         branchvalues="total",
+        hovertemplate="%{label}<br />Trade Value: $%{value:,f}<extra></extra>",
         root_color="lightgrey",
         tiling={"orientation": orientation}
     ))
-    fig.update_layout(margin=dict(t=50, l=25, r=25, b=25))
+    fig.update_layout(margin=dict(t=50, l=0, r=0, b=25))
     return fig

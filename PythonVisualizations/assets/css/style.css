@@ -40,6 +40,8 @@ header.main-header > .container {
 .filter-options {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 1rem;
+    margin-top: 1rem;
 }
 
 footer.main-footer {
