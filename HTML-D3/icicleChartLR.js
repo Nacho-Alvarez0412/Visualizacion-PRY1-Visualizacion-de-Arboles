@@ -17,7 +17,7 @@ function icicleChartLR(Chartdata) {
 	let root = partition(Chartdata);
 
 	const sectionItems = d3
-		.select("#SectionSelect")
+		.select("#SectionSelectLR")
 		.on("change", onchangeSection);
 
 	sectionItems
@@ -131,7 +131,7 @@ function icicleChartLR(Chartdata) {
 	}
 
 	function onchangeSection() {
-		let selectValue = d3.select("#SectionSelect").property("value");
+		let selectValue = d3.select("#SectionSelectLR").property("value");
 		let selectedSection;
 		let HS2Options;
 

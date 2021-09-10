@@ -191,13 +191,7 @@ nav a:hover {
 	overflow: hidden;
 }
 
-.IcicleLR {
-	margin: 5em;
-	box-shadow: 0 10px 25px rgba(0, 0, 0, 1);
-	position: relative;
-}
-
-.IcicleTB {
+.Chart {
 	margin: 5em;
 	box-shadow: 0 10px 25px rgba(0, 0, 0, 1);
 	position: relative;
@@ -224,6 +218,15 @@ label {
 }
 
 .IcicleChartTop-Bottom {
+	position: relative;
+	width: 100%;
+	top: 8em;
+	display: grid;
+	place-items: left;
+	margin: 2em;
+}
+
+.SunburstChart {
 	position: relative;
 	width: 100%;
 	top: 8em;

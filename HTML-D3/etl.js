@@ -54,7 +54,7 @@ async function getData() {
 				return repsonse.json();
 			})
 			.then((data) => {
-				//data = formatData(data.data.slice(0,100));
+				//data = formatData(data.data.slice(0, 100));
 
 				data = formatData(data.data);
 				resolve(data);
