@@ -1,5 +1,4 @@
 function icicleChartLR(Chartdata) {
-	console.log(Chartdata);
 	const CHART_WIDTH = 900;
 	const CHART_HEIGHT = 1000;
 	const format = d3.format(",d");
@@ -160,7 +159,6 @@ function icicleChartLR(Chartdata) {
 	}
 
 	function partition(data) {
-		console.log(d3.hierarchy(data));
 		const root = d3
 			.hierarchy(data)
 			.sum((d) => d["Trade Value"])
