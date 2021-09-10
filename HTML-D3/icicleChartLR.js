@@ -25,7 +25,7 @@ function icicleChartLR(Chartdata) {
 		.data(mainRoot.children)
 		.enter()
 		.append("option")
-		.text((data) => data.data.name)
+		.text((data) => truncateTxt(data.data.name))
 		.attr("value", (data) => data.data["Section ID"])
 		.attr("class", "SectionOption");
 
@@ -59,12 +59,11 @@ function icicleChartLR(Chartdata) {
 			.attr("y", 13)
 			.attr("fill-opacity", (d) => +labelVisible(d));
 
-		text.append("tspan").text((d) => d.data.name);
+		text.append("tspan").text((d) => truncateTxt(d.data.name));
 
 		const tspan = text
 			.append("tspan")
 			.attr("fill-opacity", (d) => labelVisible(d) * 0.7);
-
 		cell.append("title").text(
 			(d) =>
 				`${d
@@ -155,7 +154,7 @@ function icicleChartLR(Chartdata) {
 			.data(data)
 			.enter()
 			.append("option")
-			.text((data) => data.name)
+			.text((data) => truncateTxt(data.name))
 			.attr("value", (data) => data["HS2 ID"])
 			.attr("class", "HS2Option");
 	}
@@ -174,4 +173,11 @@ function icicleChartLR(Chartdata) {
 	}
 
 	chart();
+	function truncateTxt(text) {
+		if (text.length > 40) {
+			return text.slice(0, 40) + "...";
+		} else {
+			return text;
+		}
+	}
 }

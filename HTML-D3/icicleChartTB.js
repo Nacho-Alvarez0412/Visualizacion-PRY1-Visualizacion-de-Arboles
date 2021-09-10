@@ -39,7 +39,7 @@ function icicleChartTB(chartData) {
 		.data(root.children)
 		.enter()
 		.append("option")
-		.text((data) => data.data.name)
+		.text((data) => truncateTxt(data.data.name))
 		.attr("value", (data) => data.data["Section ID"])
 		.attr("class", "SectionOptionTB");
 
@@ -165,10 +165,18 @@ function icicleChartTB(chartData) {
 			.data(data)
 			.enter()
 			.append("option")
-			.text((data) => data.name)
+			.text((data) => truncateTxt(data.name))
 			.attr("value", (data) => data["HS2 ID"])
 			.attr("class", "HS2Option");
 	}
 
 	chart();
+
+	function truncateTxt(text) {
+		if (text.length > 40) {
+			return text.slice(0, 40) + "...";
+		} else {
+			return text;
+		}
+	}
 }

@@ -32,71 +32,82 @@
 			/>
 			<nav>
 				<ul>
-					<li><a href="#"> Icicle Left-Right </a></li>
-					<li><a href="#"> Icicle Top-Bottom </a></li>
-					<li><a href="#"> Sunburst </a></li>
+					<li>
+						<a href="#Icicle Chart Left-Right">
+							Icicle Left-Right
+						</a>
+					</li>
+					<li>
+						<a href="#Icicle Chart Top-Bottom">
+							Icicle Top-Bottom
+						</a>
+					</li>
+					<li><a href="#Sunburst Chart"> Sunburst </a></li>
 				</ul>
 			</nav>
 			<label for="nav-toggle" class="nav-toggle-label">
 				<span></span>
 			</label>
 		</header>
+		<section id="Icicle Chart Left-Right">
+			<div class="IcicleChartLeft-Right">
+				<h1 class="subtitle">Icicle Chart Left to Right</h1>
+				<div id="Chart Select" class="chart-select">
+					<select name="SectionSelect" id="SectionSelectLR">
+						<option value="0" selected disabled>
+							-- Select an option --
+						</option>
+					</select>
 
-		<div id="Icicle Chart Left-Right" class="IcicleChartLeft-Right">
-			<h1 class="subtitle">Icicle Chart Left to Right</h1>
-			<div id="Chart Select" class="chart-select">
-				<select name="SectionSelect" id="SectionSelectLR">
-					<option value="0" selected disabled>
-						-- Select an option --
-					</option>
-				</select>
-
-				<select name="HS2Select" id="HS2Select">
-					<option value="0" selected disabled>
-						-- Select an option --
-					</option>
-				</select>
+					<select name="HS2Select" id="HS2Select">
+						<option value="0" selected disabled>
+							-- Select an option --
+						</option>
+					</select>
+				</div>
+				<div id="IcicleLR" class="Chart"></div>
 			</div>
-			<div id="IcicleLR" class="Chart"></div>
-		</div>
+		</section>
+		<section id="Icicle Chart Top-Bottom">
+			<div class="IcicleChartTop-Bottom">
+				<h1 class="subtitle">Icicle Chart Top to Bottom</h1>
 
-		<div id="Icicle Chart Top-Bottom" class="IcicleChartTop-Bottom">
-			<h1 class="subtitle">Icicle Chart Left to Right</h1>
+				<div id="Chart Select" class="chart-select">
+					<select name="SectionSelect" id="SectionSelectTB">
+						<option value="0" selected disabled>
+							-- Select an option --
+						</option>
+					</select>
 
-			<div id="Chart Select" class="chart-select">
-				<select name="SectionSelect" id="SectionSelectTB">
-					<option value="0" selected disabled>
-						-- Select an option --
-					</option>
-				</select>
-
-				<select name="HS2Select" id="HS2SelectTB">
-					<option value="0" selected disabled>
-						-- Select an option --
-					</option>
-				</select>
+					<select name="HS2Select" id="HS2SelectTB">
+						<option value="0" selected disabled>
+							-- Select an option --
+						</option>
+					</select>
+				</div>
+				<div id="IcicleTB" class="Chart"></div>
 			</div>
-			<div id="IcicleTB" class="Chart"></div>
-		</div>
+		</section>
+		<section id="Sunburst Chart">
+			<div class="SunburstChart">
+				<h1 class="subtitle">Sunburst</h1>
 
-		<div id="Sunburst Chart" class="SunburstChart">
-			<h1 class="subtitle">Sunburst</h1>
+				<div id="Chart Select" class="chart-select">
+					<select name="SectionSelect" id="SectionSelectSB">
+						<option value="0" selected disabled>
+							-- Select an option --
+						</option>
+					</select>
 
-			<div id="Chart Select" class="chart-select">
-				<select name="SectionSelect" id="SectionSelectSB">
-					<option value="0" selected disabled>
-						-- Select an option --
-					</option>
-				</select>
+					<select name="HS2Select" id="HS2SelectSB">
+						<option value="0" selected disabled>
+							-- Select an option --
+						</option>
+					</select>
+				</div>
 
-				<select name="HS2Select" id="HS2SelectSB">
-					<option value="0" selected disabled>
-						-- Select an option --
-					</option>
-				</select>
+				<div id="Sunburst" class="Chart"></div>
 			</div>
-
-			<div id="Sunburst" class="Chart"></div>
-		</div>
+		</section>
 	</body>
 </html>

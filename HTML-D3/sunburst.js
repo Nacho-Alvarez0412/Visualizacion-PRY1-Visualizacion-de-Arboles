@@ -68,7 +68,8 @@ function sunburstChart(chartData) {
 			.attr("fill-opacity", (d) =>
 				arcVisible(d.current) ? (d.children ? 0.6 : 0.4) : 0
 			)
-			.attr("d", (d) => arc(d.current));
+			.attr("d", (d) => arc(d.current))
+			.style("cursor", "pointer");
 
 		path.filter((d) => d.children)
 			.style("cursor", "pointer")
@@ -94,7 +95,7 @@ function sunburstChart(chartData) {
 			.attr("dy", "0.35em")
 			.attr("fill-opacity", (d) => +labelVisible(d.current))
 			.attr("transform", (d) => labelTransform(d.current))
-			.text((d) => d.data.name);
+			.text((d) => truncateTxt(d.data.name));
 
 		const parent = g
 			.append("circle")
@@ -102,6 +103,7 @@ function sunburstChart(chartData) {
 			.attr("r", radius)
 			.attr("fill", "none")
 			.attr("pointer-events", "all")
+			.style("cursor", "pointer")
 			.on("click", clicked);
 
 		hs2Items.on("change", onchangeHS2);
@@ -222,10 +224,17 @@ function sunburstChart(chartData) {
 			.data(data)
 			.enter()
 			.append("option")
-			.text((data) => data.name)
+			.text((data) => truncateTxt(data.name))
 			.attr("value", (data) => data["HS2 ID"])
 			.attr("class", "HS2OptionSB");
 	}
 
 	chart();
+	function truncateTxt(text) {
+		if (text.length > 15) {
+			return text.slice(0, 15) + "...";
+		} else {
+			return text;
+		}
+	}
 }
