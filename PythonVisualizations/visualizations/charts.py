@@ -24,7 +24,7 @@ def create_sunburst_chart(exports_data, chart_type="all"):
         branchvalues="total"
     ))
     fig.update_layout(margin=dict(t=15, l=0, r=0, b=15), title_text="Exportaciones de Costa Rica en el 2019",
-                      height=500, title_yanchor="middle", title_xanchor="left")
+                      height=900, title_yanchor="middle", title_xanchor="left")
     return fig
 
 
@@ -52,5 +52,7 @@ def create_icicle_chart(exports_data, orientation="h", chart_type="all"):
         root_color="lightgrey",
         tiling={"orientation": orientation}
     ))
-    fig.update_layout(margin=dict(t=50, l=0, r=0, b=25))
+    chart_width = 1100 if orientation == "v" else 900
+    chart_height = 600 if orientation == "v" else 1000
+    fig.update_layout(margin=dict(t=50, l=0, r=0, b=25), width=chart_width, height=chart_height)
     return fig
