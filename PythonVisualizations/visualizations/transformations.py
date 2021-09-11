@@ -1,29 +1,36 @@
+from constants import SECTION_COLORS
+
+
 def create_hierarchical_structure_without_root(exports_dataframe):
     """Creates a hierarchical data structure with multiple roots
 
     :param exports_dataframe: The dataframe with the data of exportations
     :return: A dictionary wiht the hierarchical structure
     """
-    result = {"parents": [], "elements": [], "values": []}
+    result = {"parents": [], "elements": [], "values": [], "colors": []}
     hs2_trade_values = []
 
     for index, product in exports_dataframe.iterrows():
         if index == 0:
             result["elements"].append(product['Section'])
+            result["colors"].append(SECTION_COLORS[product["Section"]])
             result["parents"].append("")
         # Check if section exists
         if not product["Section"] in result["elements"]:
             result["elements"].append(product['Section'])
+            result["colors"].append(SECTION_COLORS[product["Section"]])
             result["parents"].append("")
             add_section_values(result["values"], hs2_trade_values)
             hs2_trade_values = []
         # Check if HS2 of section exists
         if not product["HS2"] in result["elements"]:
             result["elements"].append(product["HS2"])
+            result["colors"].append(SECTION_COLORS[product["Section"]])
             result["parents"].append(product["Section"])
             hs2_trade_values.append([])
         # Add new leaf to the tree
         result["elements"].append(product["HS4"])
+        result["colors"].append(SECTION_COLORS[product["Section"]])
         result["parents"].append(product["HS2"])
         hs2_trade_values[len(hs2_trade_values) - 1].append(product["Trade Value"])
 
@@ -40,17 +47,19 @@ def create_hierarchical_structure(exports_dataframe, root_name="Total Exports"):
     :return: A dictionary with the hierarchical structure
     """
 
-    result = {"parents": [""], "elements": [root_name], "values": []}
+    result = {"parents": [""], "elements": [root_name], "values": [], "colors": ["lightgrey"]}
     hs2_trade_values = []
     total_trades = 0
 
     for index, product in exports_dataframe.iterrows():
         if index == 0:
             result["elements"].append(product['Section'])
+            result["colors"].append(SECTION_COLORS[product["Section"]])
             result["parents"].append(root_name)
         # Check if section exists
         if not product["Section"] in result["elements"]:
             result["elements"].append(product['Section'])
+            result["colors"].append(SECTION_COLORS[product["Section"]])
             result["parents"].append(root_name)
 
             total_section_trades = add_section_values(result["values"], hs2_trade_values)
@@ -59,10 +68,12 @@ def create_hierarchical_structure(exports_dataframe, root_name="Total Exports"):
         # Check if HS2 of section exists
         if not product["HS2"] in result["elements"]:
             result["elements"].append(product["HS2"])
+            result["colors"].append(SECTION_COLORS[product["Section"]])
             result["parents"].append(product["Section"])
             hs2_trade_values.append([])
         # Add new leaf to the tree
         result["elements"].append(product["HS4"])
+        result["colors"].append(SECTION_COLORS[product["Section"]])
         result["parents"].append(product["HS2"])
         hs2_trade_values[len(hs2_trade_values) - 1].append(product["Trade Value"])
 
@@ -82,13 +93,17 @@ def create_section_hierarchical_structure(exportations_dataframe):
     result = {"parents": [""], "elements": [exportations_dataframe.iloc[0]["Section"]], "values": []}
     hs2_trade_values = []
 
+    result["colors"] = [SECTION_COLORS[exportations_dataframe.iloc[0]["Section"]]]
+
     for index, product in exportations_dataframe.iterrows():
         # Check if HS2 of section has been inserted
         if not product["HS2"] in result["elements"]:
             result["parents"].append(product["Section"])
+            result["colors"].append(SECTION_COLORS[product["Section"]])
             result["elements"].append(product["HS2"])
             hs2_trade_values.append([])
         result["elements"].append(product["HS4"])
+        result["colors"].append(SECTION_COLORS[product["Section"]])
         result["parents"].append(product["HS2"])
         hs2_trade_values[len(hs2_trade_values) - 1].append(product["Trade Value"])
 
@@ -105,9 +120,12 @@ def create_hs2_hierarchical_structure(exportations_dataframe):
     result = {"parents": [""], "elements": [exportations_dataframe.iloc[0]["HS2"]], "values": []}
     total_hs2_trades = 0
 
+    result["colors"] = [SECTION_COLORS[exportations_dataframe.iloc[0]["Section"]]]
+
     for index, product in exportations_dataframe.iterrows():
         result["parents"].append(product["HS2"])
         result["elements"].append(product["HS4"])
+        result["colors"].append(SECTION_COLORS[product["Section"]])
         result["values"].append(product["Trade Value"])
         total_hs2_trades += product["Trade Value"]
 

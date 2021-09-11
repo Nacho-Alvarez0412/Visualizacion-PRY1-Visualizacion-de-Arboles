@@ -7,7 +7,7 @@ from view.callbacks import register_callbacks
 external_stylesheets = ['./assets/css/style.css']
 app = dash.Dash(title="Costa Rica Exports", external_stylesheets=external_stylesheets)
 
-country_exports_data = pd.read_csv('_data/test.csv')
+country_exports_data = pd.read_csv('_data/exports.csv')
 
 app.layout = create_main_layout(country_exports_data)
 register_callbacks(app, country_exports_data)
