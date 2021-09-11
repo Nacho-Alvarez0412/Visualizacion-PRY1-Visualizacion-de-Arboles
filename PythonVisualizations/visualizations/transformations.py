@@ -32,7 +32,7 @@ def create_hierarchical_structure_without_root(exports_dataframe):
     return result
 
 
-def create_hierarchical_structure(exports_dataframe, root_name="Exportaciones de Costa Rica"):
+def create_hierarchical_structure(exports_dataframe, root_name="Total Exports"):
     """Creates a hierarchical data structure that can be used for generating icicle plots
 
     :param exports_dataframe: The dataframe with the exports data

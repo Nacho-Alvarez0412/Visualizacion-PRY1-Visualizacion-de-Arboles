@@ -21,7 +21,8 @@ def create_sunburst_chart(exports_data, chart_type="all"):
         parents=sunburst_data_structure["parents"],
         values=sunburst_data_structure["values"],
         hovertemplate="%{label}<br />Trade Value: $%{value:,f}<extra></extra>",
-        branchvalues="total"
+        branchvalues="total",
+        marker_colors=["rgb(168,140,204)", "#424242", "#424242","#424242", "#424242"]
     ))
     fig.update_layout(margin=dict(t=15, l=0, r=0, b=15), title_text="Exportaciones de Costa Rica en el 2019",
                       height=900, title_yanchor="middle", title_xanchor="left")
@@ -50,6 +51,7 @@ def create_icicle_chart(exports_data, orientation="h", chart_type="all"):
         branchvalues="total",
         hovertemplate="%{label}<br />Trade Value: $%{value:,f}<extra></extra>",
         root_color="lightgrey",
+        marker_colors=["#424242", "#424242", "#424242","#424242", "#424242"],
         tiling={"orientation": orientation}
     ))
     chart_width = 1100 if orientation == "v" else 900
