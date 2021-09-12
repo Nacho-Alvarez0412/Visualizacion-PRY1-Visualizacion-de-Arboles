@@ -1,0 +1,23 @@
+SECTION_COLORS = {
+    "Animal Products": "rgb(168,140,204)",
+    "Vegetable Products": "rgb(148,61,179)",
+    "Animal and Vegetable Bi-Products": "rgb(187,60,176)",
+    "Foodstuffs": "rgb(223, 64, 161)",
+    "Mineral Products": "rgb(250,73,136)",
+    "Chemical Products": "rgb(255,89,107)",
+    "Plastics and Rubbers": "rgb(255,112,78)",
+    "Animal Hides": "rgb(255,140,56)",
+    "Wood Products": "rgb(236,171,46)",
+    "Paper Goods": "rgb(210,201,52)",
+    "Textiles": "rgb(185,229,74)",
+    "Footwear and Headwear": "rgb(152,243,87)",
+    "Stone And Glass": "rgb(107,247,92)",
+    "Precious Metals": "rgb(68,244,112)",
+    "Metals": "rgb(40,234,141)",
+    "Machines": "rgb(27,217,172)",
+    "Transportation": "rgb(27,193,200)",
+    "Instruments": "rgb(38,165,219)",
+    "Weapons": "rgb(57,136,225)",
+    "Miscellaneous": "rgb(78,108,218)",
+    "Arts and Antiques": "rgb(97,83,199)"
+}
